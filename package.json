@@ -1,5 +1,5 @@
 {
-  "name": "dingding",
+  "name": "messagejs",
   "version": "1.0.0",
   "description": "bark serverchan",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mumup/dingding.git"
+    "url": "git+https://github.com/mumup/messagejs.git"
   },
   "keywords": [
     "bark",
@@ -17,9 +17,9 @@
   "author": "666666",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mumup/dingding/issues"
+    "url": "https://github.com/mumup/messagejs/issues"
   },
-  "homepage": "https://github.com/mumup/dingding#readme",
+  "homepage": "https://github.com/mumup/messagejs#readme",
   "devDependencies": {
     "@types/chai": "^4.2.21",
     "@types/chai-as-promised": "^7.1.4",
