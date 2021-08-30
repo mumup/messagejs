@@ -1,5 +1,5 @@
 {
-  "name": "messagejs",
+  "name": "@666666/messagejs",
   "version": "1.0.0",
   "description": "A message sending util",
   "main": "dist/index.js",
@@ -12,6 +12,10 @@
     "type": "git",
     "url": "git+https://github.com/mumup/messagejs.git"
   },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts"
+  ],
   "keywords": [
     "bark",
     "serverChan"
