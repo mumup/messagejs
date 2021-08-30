@@ -8,7 +8,7 @@ should()
 import Bark from '../src/packages/bark'
 
 const serverUrl = 'http://localhost:3000'
-const config = { title: 'test', body: 'test', deviceKey: '123' }
+const config = { title: 'test', body: 'test', deviceKey: process.env.BARK_DEVICE_KEY }
 
 describe('BARK push post', function () {
   const chek = ['deviceKey','title','body'] as const

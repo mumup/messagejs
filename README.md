@@ -1,6 +1,6 @@
 # Messagejs
 ### A message sending util
-
+![example workflow](https://github.com/mumup/messagejs/actions/workflows/test.yml/badge.svg)
 # Support List
 - [Bark](https://github.com/Finb/bark-server)
 
