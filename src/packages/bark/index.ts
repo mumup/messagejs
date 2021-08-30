@@ -20,15 +20,11 @@ class Bark {
   private _config: BarkBaseConfig
 
   private getBaseUrl(path: string) {
-    try {
-      const baseUrl = new URL(
-        this._config.deviceKey + path,
-        this._config.serverUrl
-      )
-      return baseUrl.toString()
-    } catch (error) {
-      throw new Error('url error')
-    }
+    const baseUrl = new URL(
+      this._config.deviceKey + path,
+      this._config.serverUrl
+    )
+    return baseUrl.toString()
   }
 
   public push = (option: PushConfig): Promise<BaseResponse> => {
@@ -68,7 +64,7 @@ class Bark {
   public info = (): Promise<InfoResponse> => {
     return new Promise((resolve, reject) => {
       got
-        .post(this._config.serverUrl + '/info')
+        .get(this._config.serverUrl + '/info')
         .then((res) => {
           if (res.statusCode === 200) {
             resolve(JSON.parse(res.body))
@@ -83,7 +79,7 @@ class Bark {
   public ping = (): Promise<BaseResponse> => {
     return new Promise((resolve, reject) => {
       got
-        .post(this._config.serverUrl + '/ping')
+        .get(this._config.serverUrl + '/ping')
         .then((res) => {
           if (res.statusCode === 200) {
             resolve(JSON.parse(res.body))
@@ -98,10 +94,10 @@ class Bark {
   public healthz = (): Promise<unknown> => {
     return new Promise((resolve, reject) => {
       got
-        .post(this._config.serverUrl + '/healthz')
+        .get(this._config.serverUrl + '/healthz')
         .then((res) => {
           if (res.statusCode === 200) {
-            resolve(JSON.parse(res.body))
+            resolve(res.body)
           }
         })
         .catch((err: RequestError) => {
