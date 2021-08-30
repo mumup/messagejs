@@ -2,7 +2,7 @@
   "name": "messagejs",
   "version": "1.0.0",
   "description": "A message sending util",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "test": "nyc mocha --require ts-node/register \"./test/**/*.ts\"",

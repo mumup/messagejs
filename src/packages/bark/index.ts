@@ -91,7 +91,7 @@ class Bark {
     })
   }
 
-  public healthz = (): Promise<unknown> => {
+  public healthz = (): Promise<string> => {
     return new Promise((resolve, reject) => {
       got
         .get(this._config.serverUrl + '/healthz')
