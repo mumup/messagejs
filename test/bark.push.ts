@@ -11,11 +11,11 @@ const serverUrl = 'http://localhost:3000'
 const config = { title: 'test', body: 'test', deviceKey: '123' }
 
 describe('BARK push post', function () {
-  const chek = ['deviceKey','title','body']
-  chek.forEach(item => {
+  const chek = ['deviceKey','title','body'] as const
+  chek.forEach((item) => {
     const params = cloneDeep(config)
 
-    params[item] = undefined
+    delete params[item]
 
     it(`Bark.push no ${item}`, async function () {
       const bark = new Bark({
