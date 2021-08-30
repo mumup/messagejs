@@ -33,4 +33,4 @@ jobs:
       - run: npm run build --if-present
       - run: npm test
         env:
-          BARK_DEVICE_KEY: ${{BARK_DEVICE_KEY}}
+          BARK_DEVICE_KEY: ${{ secrets.BARK_DEVICE_KEY }}
