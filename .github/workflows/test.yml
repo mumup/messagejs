@@ -34,3 +34,5 @@ jobs:
       - run: npm test
         env:
           BARK_DEVICE_KEY: ${{ secrets.BARK_DEVICE_KEY }}
+          SEVERCHAN_SENDKEY: ${{ secrets.SEVERCHAN_SENDKEY }}
+          SEVERCHAN_UID: ${{ secrets.SEVERCHAN_UID }}
