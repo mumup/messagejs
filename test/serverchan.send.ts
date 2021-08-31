@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { ServerChan } from '../src/packages/serverchan'
+import { ServerChan } from '../src'
 
 describe('ServerChan test', function () {
   it('ServerChan.send check', async function () {

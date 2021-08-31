@@ -28,6 +28,7 @@ class ServerChan {
    * @param sendOptions 配置
    * @param sendOptions.title 标题
    * @param sendOptions.desp 内容
+   * @param sendOptions.openid 收信人openid
    * @param sendOptions.encoded 是否进行端对端加密, 需要先配置key和uid
    * @returns
    */
@@ -45,10 +46,11 @@ class ServerChan {
 
       const url = `${this.BASE_URL}${this._options.sendKey}.send`
 
-      const { title, desp, encoded } = sendOptions
+      const { title, desp, encoded, openid } = sendOptions
 
       const postForm = {
         title,
+        openid,
         desp: '',
         encoded: encoded ? 1 : ''
       }
@@ -75,6 +77,4 @@ class ServerChan {
   }
 }
 
-export {
-  ServerChan
-}
+export default ServerChan
