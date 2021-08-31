@@ -23,7 +23,7 @@ BARK
 const { Bark } = require('messagejs')
 
 const bark = new Bark({
-  serverUrl: 'xxxxx.com',
+  serverUrl: 'http://foo.com',
 })
 
 //  push

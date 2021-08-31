@@ -7,7 +7,7 @@ should()
 
 import Bark from '../src/packages/bark'
 
-const serverUrl = 'http://localhost:3000'
+const serverUrl = 'http://localhost:3001/bark'
 const config = { title: 'test', body: 'test for cli mian', deviceKey: process.env.BARK_DEVICE_KEY }
 
 describe('BARK push post', function () {
