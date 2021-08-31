@@ -7,6 +7,7 @@
 ## Support List
 
 - [Bark](https://github.com/Finb/bark-server)
+- [ServerChan](https://sct.ftqq.com/)
 
 ## Install
 
@@ -28,6 +29,8 @@ const bark = new Bark({
 //  push
 bark.push({
   deviceKey: 'foo',
+  title: 'bar',
+  body: 'ahhhhhhhhh'
 })
 ```
 
@@ -38,7 +41,7 @@ const { ServerChan } = require('messagejs')
 
 const serverchan = new ServerChan({
   sendKey: 'xxxx',
-  encoded: {  //  options
+  encoded: {  //  option
     uid: 123,
     key: 'xxx'
   }
@@ -48,11 +51,9 @@ serverchan.send({
   title: 'xxx',
   desp: 'xxx',
   openid: 'axxx,bxxx,cxxx'
-  encoded: true //  options
+  encoded: true //  option
 })
 
 ```
 
 ## Todo
-
-- [ServerChan](https://sct.ftqq.com/)
