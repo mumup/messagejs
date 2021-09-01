@@ -11,8 +11,12 @@ on:
 
 jobs:
   bark-test:
-
     runs-on: ubuntu-latest
+    
+    env:
+      BARK_DEVICE_KEY: ${{ secrets.BARK_DEVICE_KEY }}
+      SEVERCHAN_SENDKEY: ${{ secrets.SEVERCHAN_SENDKEY }}
+      SEVERCHAN_UID: ${{ secrets.SEVERCHAN_UID }}
     
     strategy:
       matrix:
@@ -32,7 +36,3 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test
-        env:
-          BARK_DEVICE_KEY: ${{ secrets.BARK_DEVICE_KEY }}
-          SEVERCHAN_SENDKEY: ${{ secrets.SEVERCHAN_SENDKEY }}
-          SEVERCHAN_UID: ${{ secrets.SEVERCHAN_UID }}
