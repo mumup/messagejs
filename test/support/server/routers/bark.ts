@@ -9,7 +9,7 @@ const router = express.Router()
 
 /* GET home page. */
 router.post('/:deviceKey/push', function (req, res) {
-  return res.status(200).json({ code: 200, success: true })
+  return res.status(200).json({ code: 200, message: 'success' })
 })
 
 export default router
