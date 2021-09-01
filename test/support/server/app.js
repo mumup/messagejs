@@ -3,15 +3,15 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import express from 'express'
+const express = require('express')
 
-import barkRouter from './routers/bark'
+const barkRouter = require('./routers/bark')
 
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use('/bark', barkRouter)
+app.use('/bark', barkRouter.router)
 
-export default app
+module.exports.app = app
