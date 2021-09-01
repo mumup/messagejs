@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "nyc mocha --require ts-node/register \"./test/**/*.ts\"",
+    "test": "nyc mocha --require test/fixtures/server.js",
     "lint": "eslint --ignore-path .gitignore ./src ./test"
   },
   "repository": {

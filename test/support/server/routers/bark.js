@@ -3,7 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import express from 'express'
+const express = require('express')
 // import createError from 'http-errors'
 const router = express.Router()
 
@@ -12,4 +12,4 @@ router.post('/:deviceKey/push', function (req, res) {
   return res.status(200).json({ code: 200, message: 'success' })
 })
 
-export default router
+module.exports.router = router

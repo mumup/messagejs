@@ -1,8 +1,8 @@
-import { expect } from 'chai'
-import { ServerChan } from '../src'
+const { expect } = require('chai')
+const { ServerChan } = require('../dist/index')
 
-describe('ServerChan test', function () {
-  it('ServerChan.send check', async function () {
+describe('ServerChan.send check', function () {
+  it('should return code 0', async function () {
     const serverchan = new ServerChan({
       sendKey: process.env.SEVERCHAN_SENDKEY
     })
@@ -16,8 +16,10 @@ describe('ServerChan test', function () {
     expect(res).to.be.has.property('code')
     expect(res.code).be.equal(0)
   })
+})
 
-  it('ServerChan.send[encoded] check', async function () {
+describe('ServerChan.send[encoded] check', function () {
+  it('should return code 0', async function () {
     const serverchan = new ServerChan({
       sendKey: process.env.SEVERCHAN_SENDKEY,
       encoded: {
