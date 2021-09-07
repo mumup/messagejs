@@ -12,9 +12,9 @@ class ServerChan {
    * 
    * @param options 
    * @param options.sendKey 网页中获取的sendKey
-   * @param options.encoded 端对端加密配置
-   * @param options.encoded.uid 用户uid, 网页中可获取
-   * @param options.encoded.key 查看消息的密码
+   * @param options.encodeOptions 端对端加密配置
+   * @param options.encodeOptions.uid 用户uid, 网页中可获取
+   * @param options.encodeOptions.key 查看消息的密码
    */
      constructor(options: SERVERCHAN_BASE_CONFIG) {
       this.baseOptions = assignIn(this.baseOptions, options)
@@ -46,11 +46,11 @@ class ServerChan {
         encoded: encoded ? 1 : ''
       }
 
-      if (encoded && isObject(this.baseOptions.encodeOption)) {
-        if (!this.baseOptions.encodeOption.uid || !this.baseOptions.encodeOption.key) {
+      if (encoded && isObject(this.baseOptions.encodeOptions)) {
+        if (!this.baseOptions.encodeOptions.uid || !this.baseOptions.encodeOptions.key) {
           reject(new Error('encoded params is requird!'))
         } else {
-          postForm.desp = ScEncode(desp, this.baseOptions.encodeOption.key ,this.baseOptions.encodeOption.uid)
+          postForm.desp = ScEncode(desp, this.baseOptions.encodeOptions.key ,this.baseOptions.encodeOptions.uid)
         }
       } else {
         postForm.desp = desp

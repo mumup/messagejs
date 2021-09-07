@@ -41,7 +41,7 @@ const { ServerChan } = require('messagejs')
 
 const serverchan = new ServerChan({
   sendKey: 'xxxx',
-  encoded: {  //  option
+  encodeOptions: {  //  option
     uid: 123,
     key: 'xxx'
   }
