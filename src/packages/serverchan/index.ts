@@ -55,7 +55,7 @@ class ServerChan {
         encoded: encoded ? 1 : ''
       }
 
-      if (this._options.encoded?.key && this._options.encoded.uid) {
+      if (this._options.encoded?.key && this._options.encoded.uid && encoded) {
         postForm.desp = ScEncode(desp, this._options.encoded.key ,this._options.encoded.uid)
       } else {
         postForm.desp = desp
