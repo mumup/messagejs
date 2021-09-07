@@ -1,6 +1,6 @@
 export type SERVERCHAN_BASE_CONFIG = {
   sendKey?: string,
-  encoded?: ENCODED
+  encodeOption?: ENCODED
 }
 
 export interface SEND_CONFIG {
