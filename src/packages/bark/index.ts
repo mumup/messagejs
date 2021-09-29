@@ -19,7 +19,7 @@ class Bark {
 
   private _config: BarkBaseConfig
 
-  private getBaseUrl(path: string) {
+  private getBaseUrl(path: string | '') {
     const baseUrl = new URL(
       this._config.deviceKey + path,
       this._config.serverUrl
@@ -44,7 +44,7 @@ class Bark {
         reject(new Error('body is required!'))
       }
 
-      const url = this.getBaseUrl('/push')
+      const url = this.getBaseUrl('')
 
       got
         .post(url, {
