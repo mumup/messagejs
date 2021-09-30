@@ -8,6 +8,7 @@
 
 - [Bark](https://github.com/Finb/bark-server)
 - [ServerChan](https://sct.ftqq.com/)
+- [alisms](https://www.aliyun.com/product/sms?spm=5176.21213303.1128094.3.6e6f3eda2HN1z7)
 
 ## Install
 
@@ -20,7 +21,7 @@ npm install messagejs
 BARK
 
 ```javascript
-const { Bark } = require('messagejs')
+import { Bark } from '@666666/messagejs'
 
 const bark = new Bark({
   serverUrl: 'http://foo.com',
@@ -37,7 +38,7 @@ bark.push({
 ServerChan
 
 ```javascript
-const { ServerChan } = require('messagejs')
+import { ServerChan } from '@666666/messagejs'
 
 const serverchan = new ServerChan({
   sendKey: 'xxxx',
@@ -52,6 +53,25 @@ serverchan.send({
   desp: 'xxx',
   openid: 'axxx,bxxx,cxxx'
   encoded: true //  option
+})
+
+```
+
+alisms(前阿里大于)
+
+```javascript
+import { Alisms } from '@666666/messagejs'
+
+const alisms = new Alisms({
+  accessKeyId: 'xxx',
+  accessKeySecret: 'xxx'
+})
+
+alisms.sendSms({
+  phoneNumbers: '13xxxxxxx'
+  signName: '测试'
+  templateCode: 'xxxx'
+  templateParam: '{a: 123, b: 456}'
 })
 
 ```
