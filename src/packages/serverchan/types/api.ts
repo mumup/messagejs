@@ -1,5 +1,5 @@
 export type SERVERCHAN_BASE_CONFIG = {
-  sendKey?: string,
+  sendKey: string,
   encodeOptions?: ENCODED
 }
 
@@ -7,11 +7,12 @@ export interface SEND_CONFIG {
   title: string,
   desp: string,
   openid?: string,
-  encoded?: boolean
+  encoded?: boolean,
+  channel?: string
 }
 
 export type ENCODED = {
-  uid?: number | string,
+  uid: number | string,
   key: string
 }
 

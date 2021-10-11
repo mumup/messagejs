@@ -25,11 +25,15 @@ import { Bark } from '@666666/messagejs'
 
 const bark = new Bark({
   serverUrl: 'http://foo.com',
+  defaultPushOption: {
+    deviceKey: 'foo,bar',
+    sound: 'bloom.caf'
+  }
 })
 
 //  push
 bark.push({
-  deviceKey: 'foo',
+  deviceKey: 'bar',
   title: 'bar',
   body: 'ahhhhhhhhh'
 })
@@ -53,6 +57,7 @@ serverchan.send({
   desp: 'xxx',
   openid: 'axxx,bxxx,cxxx'
   encoded: true //  option
+  channel: '9|66'
 })
 
 ```

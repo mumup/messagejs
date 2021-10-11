@@ -2,108 +2,107 @@ import {
   BarkBaseConfig,
   BaseResponse,
   InfoResponse,
-  PushConfig
+  PushConfig,
 } from './types/api'
-import got from 'got/dist/source'
-import { RequestError } from 'got/dist/source'
+import got, { CancelableRequest, Response } from 'got/dist/source'
 import { URL } from 'url'
 import { assignIn } from 'lodash'
 
 class Bark {
-  constructor(config: BarkBaseConfig) {
-    this._config = {
-      serverUrl: ''
-    }
-    assignIn(this._config, config)
+  private barkConfig: BarkBaseConfig = {
+    serverUrl: ''
   }
+  private baseUrl = ''
 
-  private _config: BarkBaseConfig
-
-  private getBaseUrl(path: string | '') {
-    const baseUrl = new URL(
-      this._config.deviceKey + path,
-      this._config.serverUrl
-    )
+  private getBaseUrl(deviceKey: string, path: string | '') {
+    const baseUrl = new URL(deviceKey + path, this.baseUrl)
     return baseUrl.toString()
   }
 
-  public push = (option: PushConfig): Promise<BaseResponse> => {
-    return new Promise((resolve, reject) => {
-      if (
-        option.deviceKey === undefined &&
-        this._config.deviceKey === undefined
-      ) {
-        reject(new Error('deviceKey is required!'))
-      }
+  constructor(config: BarkBaseConfig) {
+    if (!config.serverUrl) {
+      throw Error('serverUrl is required!')
+    }
 
-      if (option.title === undefined) {
-        reject(new Error('title is required!'))
-      }
+    this.baseUrl = config.serverUrl
 
-      if (option.body === undefined) {
-        reject(new Error('body is required!'))
-      }
-
-      const url = this.getBaseUrl('')
-
-      got
-        .post(url, {
-          json: option
-        })
-        .then((res) => {
-          if (res.statusCode === 200) {
-            resolve(JSON.parse(res.body))
-          }
-        })
-        .catch((err: RequestError) => {
-          reject(err)
-        })
-    })
+    assignIn(this.barkConfig, config)
   }
 
-  public info = (): Promise<InfoResponse> => {
-    return new Promise((resolve, reject) => {
-      got
-        .get(this._config.serverUrl + '/info')
-        .then((res) => {
-          if (res.statusCode === 200) {
-            resolve(JSON.parse(res.body))
-          }
+  /**
+   * push
+   */
+  public async push(option: PushConfig): Promise<BaseResponse[]> {
+    const pushList: CancelableRequest<Response<string>>[] = []
+
+    const currentDeviceKeys =
+      option.deviceKey || this.barkConfig.defaultPushOption?.deviceKey
+
+    if (!currentDeviceKeys) {
+      throw Error('deviceKey is required!')
+    }
+
+    const { title, body } = option
+
+    if (!title || !body) {
+      throw Error('title and body is required!')
+    }
+
+    const deviceKeys = currentDeviceKeys.split(',')
+
+    deviceKeys.forEach((deviceKey) => {
+      const url = this.getBaseUrl(deviceKey, '')
+      pushList.push(
+        got.post(url, {
+          json: assignIn(this.barkConfig.defaultPushOption, option),
         })
-        .catch((err: RequestError) => {
-          reject(err)
-        })
+      )
     })
+
+    try {
+      const res = await Promise.all(pushList)
+      return res.map((d) => {
+        return JSON.parse(d.body)
+      })
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 
-  public ping = (): Promise<BaseResponse> => {
-    return new Promise((resolve, reject) => {
-      got
-        .get(this._config.serverUrl + '/ping')
-        .then((res) => {
-          if (res.statusCode === 200) {
-            resolve(JSON.parse(res.body))
-          }
-        })
-        .catch((err: RequestError) => {
-          reject(err)
-        })
-    })
+  /**
+   * info
+   */
+  public async info(): Promise<InfoResponse> {
+    try {
+      const res = await got(`${this.barkConfig.serverUrl}/info`)
+      return JSON.parse(res.body)
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 
-  public healthz = (): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      got
-        .get(this._config.serverUrl + '/healthz')
-        .then((res) => {
-          if (res.statusCode === 200) {
-            resolve(res.body)
-          }
-        })
-        .catch((err: RequestError) => {
-          reject(err)
-        })
-    })
+  /**
+   * ping
+   */
+  public async ping(): Promise<BaseResponse> {
+    try {
+      const res = await got(`${this.barkConfig.serverUrl}/ping`)
+      return JSON.parse(res.body)
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  }
+
+  /**
+   * healthz
+   */
+  public async healthz(): Promise<string> {
+    try {
+      const res = await got(`${this.barkConfig.serverUrl}/healthz`)
+      return res.body
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 }
 

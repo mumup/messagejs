@@ -1,12 +1,14 @@
 import got from "got/dist/source"
-import { assignIn, isNil, isObject } from 'lodash'
+import { assignIn, isObject } from 'lodash'
 import { SEND_CONFIG, SEND_RESPONSE, SERVERCHAN_BASE_CONFIG } from "./types/api"
 import { ScEncode } from '../../utils/index'
 
 class ServerChan {
   private BASE_URL = 'https://sctapi.ftqq.com/'
 
-  private baseOptions: SERVERCHAN_BASE_CONFIG = {}
+  private baseOptions: SERVERCHAN_BASE_CONFIG = {
+    sendKey: ''
+  }
 
     /**
    * 
@@ -17,6 +19,9 @@ class ServerChan {
    * @param options.encodeOptions.key 查看消息的密码
    */
      constructor(options: SERVERCHAN_BASE_CONFIG) {
+      if (!options.sendKey) {
+        throw Error('sendKey is required!')
+      }
       this.baseOptions = assignIn(this.baseOptions, options)
     }
 
@@ -27,23 +32,22 @@ class ServerChan {
    * @param sendOptions.desp 内容
    * @param sendOptions.openid 收信人openid
    * @param sendOptions.encoded 是否进行端对端加密, 需要先配置key和uid
+   * @param sendOptions.channel 发送通道, '|'好分隔，最多2个
    * @returns
    */
   public send = (sendOptions: SEND_CONFIG): Promise<SEND_RESPONSE> => {
     return new Promise((resolve, reject) => {
-      if (isNil(this.baseOptions.sendKey)) {
-        reject(new Error('sendKey is requird!'))
-      }
 
       const url = `${this.BASE_URL}${this.baseOptions.sendKey}.send`
 
-      const { title, desp, encoded, openid } = sendOptions
+      const { title, desp, encoded, openid, channel } = sendOptions
 
       const postForm = {
         title,
         openid,
         desp: '',
-        encoded: encoded ? 1 : ''
+        encoded: encoded ? 1 : '',
+        channel
       }
 
       if (encoded && isObject(this.baseOptions.encodeOptions)) {

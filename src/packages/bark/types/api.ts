@@ -36,18 +36,18 @@ export interface BaseConfig {
     | 'newsflash.caf'
 }
 
-export interface BarkBaseConfig extends BaseConfig {
-  serverUrl: string
+export interface BarkBaseConfig {
+  serverUrl: string,
+  defaultPushOption?: BaseConfig
 }
 
 export type ExtParams = {
   url?: string
 }
 
-export type PushConfig = {
+export interface PushConfig extends BaseConfig {
   title?: string
   body?: string
-  deviceKey?: string
 }
 
 export type BaseResponse = {

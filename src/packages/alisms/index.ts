@@ -14,9 +14,12 @@ export default class Alisms {
   }
 
   static createClient(accessKeyId: string, accessKeySecret: string): Dysmsapi {
-    const config = new $OpenApi.Config({})
-    config.accessKeyId = accessKeyId
-    config.accessKeySecret = accessKeySecret
+    const config = new $OpenApi.Config({
+      accessKeyId,
+      accessKeySecret
+    })
+
+    config.endpoint = "dysmsapi.aliyuncs.com"
     return new Dysmsapi(config)
   }
 
