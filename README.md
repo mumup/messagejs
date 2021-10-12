@@ -55,8 +55,8 @@ const serverchan = new ServerChan({
 serverchan.send({
   title: 'xxx',
   desp: 'xxx',
-  openid: 'axxx,bxxx,cxxx'
-  encoded: true //  option
+  openid: 'axxx,bxxx,cxxx',
+  encoded: true, //  option
   channel: '9|66'
 })
 
@@ -73,9 +73,9 @@ const alisms = new Alisms({
 })
 
 alisms.sendSms({
-  phoneNumbers: '13xxxxxxx'
-  signName: '测试'
-  templateCode: 'xxxx'
+  phoneNumbers: '13xxxxxxx',
+  signName: '测试',
+  templateCode: 'xxxx',
   templateParam: '{a: 123, b: 456}'
 })
 
