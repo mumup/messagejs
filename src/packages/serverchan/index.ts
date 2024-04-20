@@ -1,7 +1,7 @@
-import got from "got/dist/source"
-import { assignIn, isObject } from 'lodash'
-import { SEND_CONFIG, SEND_RESPONSE, SERVERCHAN_BASE_CONFIG } from "./types/api"
-import { ScEncode } from '../../utils/index'
+import got from "got"
+import { assignIn, isObject } from 'lodash-es'
+import { SEND_CONFIG, SEND_RESPONSE, SERVERCHAN_BASE_CONFIG } from "./types/api.js"
+import { ScEncode } from '../../utils/index.js'
 
 class ServerChan {
   private BASE_URL = 'https://sctapi.ftqq.com/'

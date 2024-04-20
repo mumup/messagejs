@@ -1,5 +1,5 @@
 import nock from 'nock'
-import { Bark } from '../src/index'
+import { Bark } from '../dist'
 
 const MOCK_SERVER_URL = 'http://mockserverurl.com'
 

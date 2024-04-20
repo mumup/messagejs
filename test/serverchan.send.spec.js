@@ -1,6 +1,6 @@
 // import got from 'got'
 import nock from 'nock'
-import { ServerChan } from '../src/index'
+import { ServerChan } from '../dist'
 
 const MOCK_SERVER_URL = 'https://sctapi.ftqq.com'
 

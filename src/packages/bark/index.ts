@@ -3,10 +3,10 @@ import {
   BaseResponse,
   InfoResponse,
   PushConfig,
-} from './types/api'
-import got, { CancelableRequest, Response } from 'got/dist/source'
+} from './types/api.js'
+import got, { CancelableRequest, Response } from 'got'
 import { URL } from 'url'
-import { assignIn } from 'lodash'
+import { assignIn } from 'lodash-es'
 
 class Bark {
   private barkConfig: BarkBaseConfig = {

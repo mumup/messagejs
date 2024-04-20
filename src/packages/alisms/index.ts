@@ -13,14 +13,14 @@ export default class Alisms {
     this.accessKeySecret = accessKeySecret
   }
 
-  static createClient(accessKeyId: string, accessKeySecret: string): Dysmsapi {
+  static createClient(accessKeyId: string, accessKeySecret: string) {
     const config = new $OpenApi.Config({
       accessKeyId,
       accessKeySecret
     })
 
     config.endpoint = "dysmsapi.aliyuncs.com"
-    return new Dysmsapi(config)
+    return new Dysmsapi.default(config)
   }
 
   /**
